@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
+import ThreeDots from './ThreeDots';
 
 export default function Weather() {
 	const [loaded, setLoaded] = useState(false);
@@ -52,7 +54,8 @@ export default function Weather() {
 			.get(url)
 			.then(showWeather)
 			.catch((error) => {
-				setMessage('Please a valid city');
+				setLoaded(false);
+				setMessage('Please enter a valid city');
 			});
 	}
 
