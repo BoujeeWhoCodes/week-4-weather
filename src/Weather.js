@@ -7,10 +7,6 @@ export default function Weather() {
 	const [loaded, setLoaded] = useState(false);
 	const [city, setCity] = useState(' ');
 	let [message, setMessage] = useState('');
-	let [weather, setWeather] = useState(null);
-	let [description, setDescription] = useState(null);
-	let [humidity, setHumidity] = useState(null);
-	let [wind, setWind] = useState(null);
 
 	function handleChange(event) {
 		setCity(event.target.value);
@@ -24,14 +20,9 @@ export default function Weather() {
 
 		function showWeather(response) {
 			setLoaded(true);
-			console.log(response.data);
 
 			if (response.data !== null || response.data !== undefined) {
 				setLoaded(false);
-				setWeather(response.data.main.temp);
-				setDescription(response.data.weather[0].description);
-				setHumidity(response.data.main.humidity);
-				setWind(response.data.wind.speed);
 				setMessage(
 					<ul>
 						<li>Temperature: {Math.round(response.data.main.temp)}°C</li>
@@ -41,6 +32,7 @@ export default function Weather() {
 						<li>
 							<img
 								src={`https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`}
+								alt='Weather Icon'
 							/>
 						</li>
 					</ul>
